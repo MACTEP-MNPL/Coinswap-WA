@@ -1,0 +1,63 @@
+services:
+  #coinswap-web-app:
+  #  build:
+  #    context: ./web-app
+  #    dockerfile: Dockerfile
+  #  ports:
+  #    - 3000:3000
+  #  networks:
+  #    - coinswap-wa-network
+  #coinswap-wa-admin-panel:
+  #  build:
+  #    context: ./admin-panel
+  #    dockerfile: Dockerfile
+  #  ports:
+  #    - 3001:3001
+  #  networks:
+  #    - coinswap-wa-network
+  coinswap-wa-backend:
+    container_name: coinswap-wa-backend
+    image: ghcr.io/mactep-mnpl/coinswap-wa-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      PORT: ${BACKEND_PORT}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_DB: ${DATABASE_DB}
+    depends_on:
+      coinswap-wa-database:
+        condition: service_healthy
+    networks:
+      - coinswap-wa-network
+
+  coinswap-wa-database:
+    container_name: coinswap-wa-database
+    image: ghcr.io/mactep-mnpl/coinswap-wa-database:latest
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_DB}
+    volumes:
+      - coinswap-wa-database:/var/lib/postgresql/data
+    networks:
+      - coinswap-wa-network
+  
+
+networks:
+  coinswap-wa-network:
+    driver: bridge
+
+volumes:
+  coinswap-wa-database:
+    driver: local

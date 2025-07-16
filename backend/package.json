@@ -1,0 +1,28 @@
+{
+  "name": "coinswap-wa-backend",
+  "version": "1.0.0",
+  "description": "Backend node js api server for CoinSwap mini-app",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.0",
+    "express": "^4.21.2",
+    "express-winston": "^4.2.0",
+    "nanoid": "=5.1.5",
+    "pg": "^8.16.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "ulid": "=3.0.1",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

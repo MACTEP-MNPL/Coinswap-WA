@@ -40,7 +40,7 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          tags: ${{ env.IMAGE_PREFIX }}/backend:latest
+          tags:  ghcr.io/mactep-mnpl/coinswap-wa-backend:latest
 
       #- name: Build and push web-app
       #  uses: docker/build-push-action@v5
@@ -56,4 +56,4 @@ jobs:
           context: ./database
           file: ./database/Dockerfile
           push: true
-          tags: ${{ env.IMAGE_PREFIX }}/database:latest
+          tags: ghcr.io/mactep-mnpl/coinswap-wa-database:latest

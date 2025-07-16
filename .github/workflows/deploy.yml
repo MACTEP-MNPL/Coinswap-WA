@@ -26,13 +26,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push admin-panel
-        uses: docker/build-push-action@v5
-        with:
-          context: ./admin-panel
-          file: ./admin-panel/Dockerfile
-          push: true
-          tags: ${{ env.IMAGE_PREFIX }}/admin-panel:latest
+      #- name: Build and push admin-panel
+      #  uses: docker/build-push-action@v5
+      #  with:
+      #    context: ./admin-panel
+      #    file: ./admin-panel/Dockerfile
+      #    push: true
+      #    tags: ${{ env.IMAGE_PREFIX }}/admin-panel:latest
 
       - name: Build and push backend
         uses: docker/build-push-action@v5
@@ -42,13 +42,13 @@ jobs:
           push: true
           tags: ${{ env.IMAGE_PREFIX }}/backend:latest
 
-      - name: Build and push web-app
-        uses: docker/build-push-action@v5
-        with:
-          context: ./web-app
-          file: ./web-app/Dockerfile
-          push: true
-          tags: ${{ env.IMAGE_PREFIX }}/web-app:latest
+      #- name: Build and push web-app
+      #  uses: docker/build-push-action@v5
+      #  with:
+      #    context: ./web-app
+      #    file: ./web-app/Dockerfile
+      #    push: true
+      #    tags: ${{ env.IMAGE_PREFIX }}/web-app:latest
 
       - name: Build and push database
         uses: docker/build-push-action@v5
